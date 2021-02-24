@@ -11,18 +11,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserDetailsController {
 
+    public static final String UserDetailsPath = "/userdetails/";
+
     @Autowired
     private IUserDetailsService userDetailService;
     @Autowired
     private UserDetailsDtoRequestResponseMapper mapper;
 
-    @GetMapping("/userdetails/{employeeId}")
+    @GetMapping(UserDetailsPath + "{employeeId}")
     public GetUserDetailsResponseDto getUserDetails(@PathVariable String employeeId) {
         GetUserDetailsServiceDto dto = userDetailService.getUserDetails(employeeId);
         return mapper.map(dto);
     }
 
-    @PutMapping("/userdetails/{employeeId}")
+    @PutMapping(UserDetailsPath + "{employeeId}")
     public void updateUserDetails(@PathVariable String employeeId, @RequestBody UpdateUserDetailsRequestDto request) {
         userDetailService.updateUserDetails(mapper.map(request, employeeId));
     }

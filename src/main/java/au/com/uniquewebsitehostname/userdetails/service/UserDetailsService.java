@@ -24,6 +24,7 @@ public class UserDetailsService implements IUserDetailsService {
         if(userDetailsEntity == null) {
             // TODO: Throw not found exception
         }
+
         return mapper.map(userDetailsEntity);
     }
 

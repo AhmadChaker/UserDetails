@@ -2,6 +2,7 @@ package au.com.uniquewebsitehostname.userdetails.dataaccess.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.sql.Timestamp;
 @Entity
 @Setter
 @Getter
+@ToString
 @Table(name="USER_DETAIL")
 public class UserDetailEntity {
 

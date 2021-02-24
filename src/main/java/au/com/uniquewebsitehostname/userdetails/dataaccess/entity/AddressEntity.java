@@ -2,6 +2,7 @@ package au.com.uniquewebsitehostname.userdetails.dataaccess.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -29,4 +30,15 @@ public class AddressEntity {
     @OneToOne
     @JoinColumn(name="USER_ID", referencedColumnName = "ID")
     private UserDetailEntity userDetail;
+
+    @Override
+    public String toString() {
+        return "AddressEntity{" +
+                "street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
 }
