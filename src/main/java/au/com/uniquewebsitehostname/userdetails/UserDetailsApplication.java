@@ -10,22 +10,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@EnableAspectJAutoProxy(proxyTargetClass = true)
-public class UserDetailsApplication implements WebMvcConfigurer {
-
-    @Autowired
-    IdValidationInterceptor idValidationInterceptor;
-
+public class UserDetailsApplication {
     public static void main(final String[] args) {
         SpringApplication.run(UserDetailsApplication.class, args);
     }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry)
-    {
-        // Pattern ensures we only match /userdetails/{id}
-        registry.addInterceptor(idValidationInterceptor).addPathPatterns(
-                "/**"+UserDetailsController.UserDetailsPath+"/*");
-    }
-
 }

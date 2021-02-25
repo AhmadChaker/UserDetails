@@ -11,3 +11,7 @@ INSERT INTO ADDRESS(USER_ID, STREET, CITY, POSTCODE, STATE, COUNTRY) VALUES
   (3, '6 Fake Street', 'Sydney4', '20001', 'NSW1', 'AUSTRALIA20'),
   (4, '8 Fake Street', 'Sydney5', '20001', 'NSW1', 'AUSTRALIA21'),
   (5, '9 Fake Street', 'Sydney6', '20010', 'NSW1', 'AUSTRALIA22');
+
+INSERT INTO USERS(USERNAME, PASSWORD, AUTHORITIES) VALUES
+  ('achaker', '{bcrypt}$2y$10$iVQnXSwj/jmBAtiKt0aJ/eT.BV00/HAY189UmcdY8YZcfFBAZezb.', 'ROLE_USER'),
+  ('achakerAdmin', '{bcrypt}$2y$10$2gklUQeTY45YsWMhGZFYnuHuFv3VDhLh0JQUxKyJfmX42/lifX4Tm', 'ROLE_ADMIN');
