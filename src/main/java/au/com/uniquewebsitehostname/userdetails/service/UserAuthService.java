@@ -2,6 +2,7 @@ package au.com.uniquewebsitehostname.userdetails.service;
 
 import au.com.uniquewebsitehostname.userdetails.dataaccess.dao.IUserAuthRepository;
 import au.com.uniquewebsitehostname.userdetails.dataaccess.entity.UserAuthEntity;
+import au.com.uniquewebsitehostname.userdetails.exception.UserAuthDetailsNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,7 @@ public class UserAuthService implements org.springframework.security.core.userde
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserAuthEntity userAuthEntity = userAuthRepository.findByUsername(username);
         if(userAuthEntity ==null ) {
-            // Todo throw exception user not found
+            throw new UserAuthDetailsNotFoundException();
         }
 
         SimpleGrantedAuthority authority  = new SimpleGrantedAuthority(userAuthEntity.getAuthorities());
