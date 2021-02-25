@@ -6,6 +6,7 @@ import au.com.uniquewebsitehostname.userdetails.dto.GetUserDetailsServiceDto;
 import au.com.uniquewebsitehostname.userdetails.mapper.UserDetailsDtoRequestResponseMapper;
 import au.com.uniquewebsitehostname.userdetails.service.IUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,6 +25,7 @@ public class UserDetailsController {
         return mapper.map(dto);
     }
 
+    @Secured("ROLE_ADMIN")
     @PutMapping(UserDetailsPath + "{employeeId}")
     public void updateUserDetails(@PathVariable String employeeId, @RequestBody UpdateUserDetailsRequestDto request) {
         userDetailService.updateUserDetails(mapper.map(request, employeeId));
