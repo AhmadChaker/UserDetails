@@ -7,14 +7,17 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import au.com.uniquewebsitehostname.userdetails.utility.UrlPathHelper;
-
 @Component
 public class IdValidationInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String userId = UrlPathHelper.getLastPartOfUrl(request.getRequestURI());
+        String url = request.getRequestURI();
+        if(url == null || url.isEmpty()) {
+            throw new IdValidationException();
+        }
+
+        String userId = getLastPartOfUrl(url);
         if(userId.isEmpty()) {
             throw new IdValidationException();
         }
@@ -26,5 +29,9 @@ public class IdValidationInterceptor extends HandlerInterceptorAdapter {
         }
 
         return true;
+    }
+
+    private static String getLastPartOfUrl(String url) {
+        return url.substring(url.lastIndexOf("/") + 1);
     }
 }
