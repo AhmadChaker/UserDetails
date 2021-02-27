@@ -1,5 +1,6 @@
 package au.com.uniquewebsitehostname.userdetails.interceptor;
 
+import au.com.uniquewebsitehostname.userdetails.exception.IdValidationException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -15,14 +16,13 @@ public class IdValidationInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String userId = UrlPathHelper.getLastPartOfUrl(request.getRequestURI());
         if(userId.isEmpty()) {
-            // TODO throw validation error
+            throw new IdValidationException();
         }
 
         try {
             Integer.parseInt(userId);
         } catch (NumberFormatException e) {
-            // TODO log the exception
-            // TODO throw validation error
+            throw new IdValidationException(userId);
         }
 
         return true;

@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -33,6 +32,7 @@ public class LoggingAspect {
     @AfterThrowing(pointcut=APP_PACKAGE_WIDE_POINTCUT, throwing = "e")
     public void logException(JoinPoint joinPoint, Exception e) {
         // TODO fix so exception is logged properly (entire stacktrace)
-        logger.log(Level.ERROR, "Exception thrown - " + e);
+        logger.log(Level.ERROR, "Exception thrown - Class: " + joinPoint.getTarget().getClass().getName()
+                + ", Exception: " + e);
     }
 }

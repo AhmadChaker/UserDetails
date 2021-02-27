@@ -31,6 +31,7 @@ public class AddressEntity {
     @JoinColumn(name="USER_ID", referencedColumnName = "ID")
     private UserDetailEntity userDetail;
 
+    // Manually override to exclude userDetail due to circular reference
     @Override
     public String toString() {
         return "AddressEntity{" +
