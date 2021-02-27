@@ -23,7 +23,7 @@ public class UserDetailsService implements IUserDetailsService {
     public GetUserDetailsServiceDto getUserDetails(String employeeId) {
         var userDetailsEntity = userDetailsRepository.findByEmployeeId(employeeId);
         if(userDetailsEntity == null) {
-            throw new UserDetailsNotFoundException();
+            throw new UserDetailsNotFoundException(employeeId);
         }
 
         return mapper.map(userDetailsEntity);
@@ -33,7 +33,7 @@ public class UserDetailsService implements IUserDetailsService {
     public void updateUserDetails(UpdateUserDetailsServiceDto userDetailsDto) {
         var userDetailsEntity = userDetailsRepository.findByEmployeeId(userDetailsDto.getOldEmployeeId());
         if(userDetailsEntity == null) {
-            throw new UserDetailsNotFoundException();
+            throw new UserDetailsNotFoundException(userDetailsDto.getOldEmployeeId());
         }
         mapper.map(userDetailsDto, userDetailsEntity);
         userDetailsEntity.setLastUpdatedDateTime(new Timestamp(System.currentTimeMillis()));

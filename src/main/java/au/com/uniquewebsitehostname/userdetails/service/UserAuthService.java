@@ -21,7 +21,7 @@ public class UserAuthService implements org.springframework.security.core.userde
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserAuthEntity userAuthEntity = userAuthRepository.findByUsername(username);
         if(userAuthEntity ==null ) {
-            throw new UserAuthDetailsNotFoundException();
+            throw new UserAuthDetailsNotFoundException(username);
         }
 
         SimpleGrantedAuthority authority  = new SimpleGrantedAuthority(userAuthEntity.getAuthorities());
