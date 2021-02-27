@@ -6,6 +6,6 @@ public class IdValidationException extends RuntimeException {
         super("No employee id specified");
     }
     public IdValidationException(String id) {
-        super("Employee Id validation failed, id : " + id + " is not an integer");
+        super("Employee Id validation failed, id:" + id + " is not an integer");
     }
 }

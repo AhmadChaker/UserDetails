@@ -3,23 +3,25 @@ package au.com.uniquewebsitehostname.userdetails.exception;
 import java.util.Date;
 
 public class ExceptionResponse {
-    private Date timestamp;
+    private int code;
     private String message;
+    private Date timestamp;
 
-    public ExceptionResponse(String message) {
+    public ExceptionResponse(String message, ErrorCode code) {
+        this.code = code.getErrorCode();
         this.message = message;
         this.timestamp = new Date();
     }
 
-    public ExceptionResponse(Date timestamp, String message) {
-        this.timestamp = timestamp;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
+    public int getCode() {
+        return code;
     }
 
     public String getMessage() {
         return message;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
     }
 }
