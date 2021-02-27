@@ -1,7 +1,10 @@
 package au.com.uniquewebsitehostname.userdetails.exception;
 
+import lombok.ToString;
+
 import java.util.Date;
 
+@ToString
 public class ExceptionResponse {
     private int code;
     private String message;

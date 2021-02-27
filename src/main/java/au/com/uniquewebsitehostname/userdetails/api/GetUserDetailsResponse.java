@@ -1,4 +1,4 @@
-package au.com.uniquewebsitehostname.userdetails.dto;
+package au.com.uniquewebsitehostname.userdetails.api;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,12 +7,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UpdateUserDetailsServiceDto {
+public class GetUserDetailsResponse {
     private String title;
     private String firstName;
     private String lastName;
     private String gender;
-    private String oldEmployeeId;
     private String employeeId;
-    private AddressDetailsDto address;
+    private AddressDetails address;
 }

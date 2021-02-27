@@ -15,7 +15,7 @@ public class InterceptorsConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry)
     {
-        // Pattern ensures we only match /userdetails/{id}
+        // For flexibility the pattern only matches userdetails path
         registry.addInterceptor(idValidationInterceptor).addPathPatterns(
                 "/**"+ UserDetailsController.UserDetailsPath+"/*");
     }

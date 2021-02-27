@@ -1,6 +1,7 @@
 package au.com.uniquewebsitehostname.userdetails.mapper;
 
 import au.com.uniquewebsitehostname.userdetails.dataaccess.entity.UserDetailEntity;
+import au.com.uniquewebsitehostname.userdetails.dto.AddressDetailsDto;
 import au.com.uniquewebsitehostname.userdetails.dto.GetUserDetailsServiceDto;
 import au.com.uniquewebsitehostname.userdetails.dto.UpdateUserDetailsServiceDto;
 import org.springframework.beans.BeanUtils;
@@ -11,7 +12,7 @@ public class UserDetailsDtoEntityMapper {
 
     public GetUserDetailsServiceDto map(UserDetailEntity source) {
         GetUserDetailsServiceDto target = new GetUserDetailsServiceDto();
-        target.setAddress(target.new AddressDetails());
+        target.setAddress(new AddressDetailsDto());
         BeanUtils.copyProperties(source, target);
         BeanUtils.copyProperties(source.getAddress(), target.getAddress());
         return target;

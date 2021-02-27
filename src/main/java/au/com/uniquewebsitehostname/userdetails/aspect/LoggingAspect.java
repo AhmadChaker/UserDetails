@@ -1,6 +1,5 @@
 package au.com.uniquewebsitehostname.userdetails.aspect;
 
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
@@ -14,25 +13,17 @@ import java.util.Arrays;
 public class LoggingAspect {
     private Logger logger = LogManager.getLogger(LoggingAspect.class);
 
-    private static final String APP_PACKAGE_WIDE_POINTCUT = "execution(public * au.com.uniquewebsitehostname..*.*(..))";
+    private static final String PACKAGE_PUBLIC_METHODS_CUT="execution(public * au.com.uniquewebsitehostname..*.*(..))";
 
-    @Before(APP_PACKAGE_WIDE_POINTCUT)
+    @Before(PACKAGE_PUBLIC_METHODS_CUT)
     public void logBefore(JoinPoint joinPoint) {
-        logger.log(Level.INFO, "Entry - Class: " + joinPoint.getTarget().getClass().getName() + " Method: " +
+        logger.info("Entry - Class: " + joinPoint.getTarget().getClass().getName() + " Method: " +
                 joinPoint.getSignature().getName() + " Args: " +Arrays.asList(joinPoint.getArgs()));
-
     }
 
-    @AfterReturning(pointcut=APP_PACKAGE_WIDE_POINTCUT, returning="result")
+    @AfterReturning(pointcut=PACKAGE_PUBLIC_METHODS_CUT, returning="result")
     public void logAfter(JoinPoint joinPoint, Object result) {
-        logger.log(Level.INFO, "Exit - Class: " + joinPoint.getTarget().getClass().getName() + " Method: " +
+        logger.info("Exit - Class: " + joinPoint.getTarget().getClass().getName() + " Method: " +
                 joinPoint.getSignature().getName() + " Return: " + result);
-    }
-
-    @AfterThrowing(pointcut=APP_PACKAGE_WIDE_POINTCUT, throwing = "e")
-    public void logException(JoinPoint joinPoint, Exception e) {
-        // TODO fix so exception is logged properly (entire stacktrace)
-        logger.log(Level.ERROR, "Exception thrown - Class: " + joinPoint.getTarget().getClass().getName()
-                + ", Exception: " + e);
     }
 }

@@ -3,9 +3,16 @@ package au.com.uniquewebsitehostname.userdetails.dataaccess.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToOne;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
+import javax.validation.constraints.Size;
 
 import java.sql.Timestamp;
 
@@ -21,15 +28,15 @@ public class UserDetailEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Length(max=10)
+    @Size(max=10)
     private String employeeId;
-    @Length(max=10)
+    @Size(max=10)
     private String title;
-    @Length(max=40)
+    @Size(max=40)
     private String firstName;
-    @Length(max=40)
+    @Size(max=40)
     private String lastName;
-    @Length(max=10)
+    @Size(max=10)
     private String gender;
     private Timestamp lastUpdatedDateTime;
 
