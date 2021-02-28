@@ -12,19 +12,13 @@ import au.com.uniquewebsitehostname.userdetails.api.GetUserDetailsResponse;
 import au.com.uniquewebsitehostname.userdetails.api.UpdateUserDetailsRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,15 +27,15 @@ import static org.junit.Assert.assertEquals;
 @ExtendWith(PactConsumerTestExt.class)
 public class PactContractGenerator {
 
-    String mainApiPath = "/api/v1/user-details";
-    private final String NonPrivelegedAuthHeader = "Basic YWNoYWtlcjpNYXJzMjAyMQ==";
+    private final String mainApiPath = "/api/v1/userdetails/0012345694";
+    private final String PrivelegedAuthHeader = "Basic YWNoYWtlckFkbWluOkp1cGl0ZXIyMDIy";
 
     @Pact(provider = "user_detail_provider", consumer = "user_detail_consumer")
     public RequestResponsePact createPactPut(PactDslWithProvider builder) throws ParseException {
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
         headers.put("Accept", "application/json");
-        headers.put("Authorization", NonPrivelegedAuthHeader);
+        headers.put("Authorization", PrivelegedAuthHeader);
 
         DslPart updateUserDetailsRequest = new PactDslJsonBody()
                 .stringType("title", "My title")
@@ -72,15 +66,15 @@ public class PactContractGenerator {
                 .closeObject();
 
         return builder
-                .given("An incoming request  to update user details")
+                .given("A request to update user details")
                     .uponReceiving("A request to update user details")
                     .path(mainApiPath)
                     .method("PUT")
                     .headers(headers)
                     .body(updateUserDetailsRequest)
                     .willRespondWith()
-                    .status(201)
-                .given("An incoming request to get user details ")
+                    .status(204)
+                .given("A request to get user details")
                     .uponReceiving("A request to update user details")
                     .path(mainApiPath)
                     .method("GET")
@@ -109,7 +103,7 @@ public class PactContractGenerator {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         headers.add("Accept", "application/json");
-        headers.add("Authorization", NonPrivelegedAuthHeader);
+        headers.add("Authorization", PrivelegedAuthHeader);
         HttpEntity<UpdateUserDetailsRequest> httpEntity = new HttpEntity<UpdateUserDetailsRequest>(request, headers);
         TestRestTemplate testRestTemplate = new TestRestTemplate();
 
@@ -118,7 +112,7 @@ public class PactContractGenerator {
                 Object.class);
 
         // Assert (UpdateUserDetails)
-        assert (response.getStatusCode().value() == 201);
+        assert (response.getStatusCode().value() == 204);
 
         // Setup (GetUserDetails)
         HttpEntity<String> getUserDetailsHttpEntity = new HttpEntity<String>(null, headers);

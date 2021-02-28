@@ -1,0 +1,268 @@
+{
+  "provider": {
+    "name": "user_detail_provider"
+  },
+  "consumer": {
+    "name": "user_detail_consumer"
+  },
+  "interactions": [
+    {
+      "description": "A request to update user details",
+      "request": {
+        "method": "GET",
+        "path": "/api/v1/userdetails/0012345694",
+        "headers": {
+          "Authorization": "Basic YWNoYWtlckFkbWluOkp1cGl0ZXIyMDIy",
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "body": {
+          "firstName": "First",
+          "lastName": "Last",
+          "address": {
+            "country": "Australia",
+            "city": "Sydney",
+            "street": "123 Fake Street",
+            "postcode": "2000",
+            "state": "NSW"
+          },
+          "gender": "Male",
+          "employeeId": "123",
+          "title": "My title"
+        },
+        "matchingRules": {
+          "body": {
+            "$.title": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.firstName": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.lastName": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.gender": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.employeeId": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.address.street": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.address.city": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.address.postcode": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.address.state": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.address.country": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        }
+      },
+      "providerStates": [
+        {
+          "name": "A request to get user details"
+        }
+      ]
+    },
+    {
+      "description": "A request to update user details",
+      "request": {
+        "method": "PUT",
+        "path": "/api/v1/userdetails/0012345694",
+        "headers": {
+          "Authorization": "Basic YWNoYWtlckFkbWluOkp1cGl0ZXIyMDIy",
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "firstName": "First",
+          "lastName": "Last",
+          "address": {
+            "country": "Australia",
+            "city": "Sydney",
+            "street": "123 Fake Street",
+            "postcode": "2000",
+            "state": "NSW"
+          },
+          "gender": "Male",
+          "employeeId": "123",
+          "title": "My title"
+        },
+        "matchingRules": {
+          "body": {
+            "$.title": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.firstName": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.lastName": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.gender": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.employeeId": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.address.street": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.address.city": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.address.postcode": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.address.state": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.address.country": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 204
+      },
+      "providerStates": [
+        {
+          "name": "A request to update user details"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    },
+    "pact-jvm": {
+      "version": "4.0.10"
+    }
+  }
+}
