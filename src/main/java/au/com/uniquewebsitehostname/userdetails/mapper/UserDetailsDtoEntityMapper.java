@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDetailsDtoEntityMapper {
 
-    public GetUserDetailsServiceDto map(UserDetailEntity source) {
+    public GetUserDetailsServiceDto mapEntityToGetUserDetailsDto(UserDetailEntity source) {
         GetUserDetailsServiceDto target = new GetUserDetailsServiceDto();
         target.setAddress(new AddressDetailsDto());
         BeanUtils.copyProperties(source, target);
@@ -18,7 +18,7 @@ public class UserDetailsDtoEntityMapper {
         return target;
     }
 
-    public UserDetailEntity map(UpdateUserDetailsServiceDto source, UserDetailEntity target) {
+    public UserDetailEntity mapUpdateUserDetailsDtoToEntity(UpdateUserDetailsServiceDto source, UserDetailEntity target) {
         BeanUtils.copyProperties(source, target);
         BeanUtils.copyProperties(source.getAddress(), target.getAddress());
         return target;

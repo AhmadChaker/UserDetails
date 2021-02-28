@@ -34,7 +34,7 @@ public class UserDetailsService implements IUserDetailsService {
             throw new UserDetailsNotFoundException(employeeId);
         }
 
-        return mapper.map(userDetailsEntity);
+        return mapper.mapEntityToGetUserDetailsDto(userDetailsEntity);
     }
 
     @HystrixCommand(ignoreExceptions = UserDetailsNotFoundException.class)
@@ -44,7 +44,7 @@ public class UserDetailsService implements IUserDetailsService {
         if(userDetailsEntity == null) {
             throw new UserDetailsNotFoundException(userDetailsDto.getOldEmployeeId());
         }
-        mapper.map(userDetailsDto, userDetailsEntity);
+        mapper.mapUpdateUserDetailsDtoToEntity(userDetailsDto, userDetailsEntity);
         var violations = validator.validate(userDetailsEntity);
         if(!violations.isEmpty()) {
             throw new ConstraintViolationException(violations);

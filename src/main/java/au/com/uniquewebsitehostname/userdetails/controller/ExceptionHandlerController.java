@@ -2,10 +2,9 @@ package au.com.uniquewebsitehostname.userdetails.controller;
 
 import au.com.uniquewebsitehostname.userdetails.aspect.LoggingAspect;
 import au.com.uniquewebsitehostname.userdetails.exception.*;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.netflix.hystrix.exception.HystrixRuntimeException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +21,7 @@ import javax.validation.ConstraintViolationException;
 
 @ControllerAdvice
 public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
-    private Logger logger = LogManager.getLogger(LoggingAspect.class);
+    private Logger logger = LoggerFactory.getLogger(ExceptionHandlerController.class);
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleRemainingExceptions(Exception ex, WebRequest request) {
@@ -55,18 +54,14 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
-    public final ResponseEntity<Object> handleConstraintValidationException(Exception ex, WebRequest request) {
+    public final ResponseEntity<Object> handleConstraintValidationException(ConstraintViolationException ex,
+                                                                            WebRequest request) {
         return formatResponse(ex, ErrorCode.CONSTRAINT_VALIDATION_FAILED, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public final ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
         return formatResponse(ex, ErrorCode.ACCESS_FORBIDDEN, HttpStatus.FORBIDDEN);
-    }
-
-    @ExceptionHandler(value = JsonProcessingException.class)
-    public final ResponseEntity<Object> handleJsonProcessingExceptions(JsonProcessingException ex, WebRequest request) {
-        return formatResponse(ex, ErrorCode.JSON_PROCESSING_ERROR, HttpStatus.BAD_REQUEST);
     }
 
     @Override
@@ -91,7 +86,10 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
 
     private ResponseEntity<Object> formatResponse(String message, Exception ex, ErrorCode code, HttpStatus httpStatus) {
         var exceptionResponse = new ExceptionResponse(message, code);
-        logger.error(exceptionResponse, ex);
+        if(logger == null) {
+            logger = LoggerFactory.getLogger(ExceptionHandlerController.class);
+        }
+        logger.error(exceptionResponse.toString(), ex);
         return new ResponseEntity<Object>(exceptionResponse, httpStatus);
     }
 

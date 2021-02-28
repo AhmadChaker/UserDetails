@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDetailsDtoRequestResponseMapper {
 
-    public GetUserDetailsResponse map(GetUserDetailsServiceDto source) {
+    public GetUserDetailsResponse mapDtoToGetUserDetailsResponse(GetUserDetailsServiceDto source) {
         GetUserDetailsResponse target = new GetUserDetailsResponse();
         target.setAddress(new AddressDetails());
         BeanUtils.copyProperties(source, target);
@@ -20,7 +20,7 @@ public class UserDetailsDtoRequestResponseMapper {
         return target;
     }
 
-    public UpdateUserDetailsServiceDto map(UpdateUserDetailsRequest source, String oldEmployeeId) {
+    public UpdateUserDetailsServiceDto mapUpdateUserDetailsRequestToDto(UpdateUserDetailsRequest source, String oldEmployeeId) {
         UpdateUserDetailsServiceDto target = new UpdateUserDetailsServiceDto();
         target.setAddress(new AddressDetailsDto());
         target.setOldEmployeeId(oldEmployeeId);

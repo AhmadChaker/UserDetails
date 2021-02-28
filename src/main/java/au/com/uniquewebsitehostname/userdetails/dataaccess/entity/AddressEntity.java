@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -21,14 +22,18 @@ public class AddressEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotNull
     @Size(max=100)
     private String street;
+    @NotNull
     @Size(max=30)
     private String city;
+    @NotNull
     @Size(max=10)
     private String postcode;
     @Size(max=20)
     private String state;
+    @NotNull
     @Size(max=20)
     private String country;
 

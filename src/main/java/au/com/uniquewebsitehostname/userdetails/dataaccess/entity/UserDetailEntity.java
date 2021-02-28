@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
 import javax.persistence.FetchType;
 import javax.persistence.CascadeType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import java.sql.Timestamp;
@@ -28,14 +29,19 @@ public class UserDetailEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotNull
     @Size(max=10)
     private String employeeId;
+    @NotNull
     @Size(max=10)
     private String title;
+    @NotNull
     @Size(max=40)
     private String firstName;
+    @NotNull
     @Size(max=40)
     private String lastName;
+    @NotNull
     @Size(max=10)
     private String gender;
     private Timestamp lastUpdatedDateTime;
