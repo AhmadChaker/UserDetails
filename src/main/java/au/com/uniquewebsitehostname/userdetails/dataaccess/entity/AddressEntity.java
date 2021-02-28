@@ -16,40 +16,40 @@ import javax.validation.constraints.Size;
 @Entity
 @Setter
 @Getter
-@Table(name="ADDRESS")
+@Table(name = "ADDRESS")
 public class AddressEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotNull
-    @Size(max=100)
+    @Size(max = 100)
     private String street;
     @NotNull
-    @Size(max=30)
+    @Size(max = 30)
     private String city;
     @NotNull
-    @Size(max=10)
+    @Size(max = 10)
     private String postcode;
-    @Size(max=20)
+    @Size(max = 20)
     private String state;
     @NotNull
-    @Size(max=20)
+    @Size(max = 20)
     private String country;
 
     @OneToOne
-    @JoinColumn(name="USER_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     private UserDetailEntity userDetail;
 
     // Manually override to exclude userDetail due to circular reference
     @Override
     public String toString() {
-        return "AddressEntity{" +
-                "street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", postcode='" + postcode + '\'' +
-                ", state='" + state + '\'' +
-                ", country='" + country + '\'' +
-                '}';
+        return "AddressEntity{"
+                + "street='" + street + '\''
+                + ", city='" + city + '\''
+                + ", postcode='" + postcode + '\''
+                + ", state='" + state + '\''
+                + ", country='" + country + '\''
+                + '}';
     }
 }

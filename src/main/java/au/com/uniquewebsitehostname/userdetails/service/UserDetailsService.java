@@ -23,7 +23,7 @@ public class UserDetailsService implements IUserDetailsService {
     private IUserDetailsRepository userDetailsRepository;
 
     @Autowired
-    Validator validator;
+    private Validator validator;
 
     @Autowired
     private UserDetailsDtoEntityMapper mapper;
@@ -32,7 +32,7 @@ public class UserDetailsService implements IUserDetailsService {
     @Override
     public GetUserDetailsServiceDto getUserDetails(String employeeId) {
         var userDetailsEntity = userDetailsRepository.findByEmployeeId(employeeId);
-        if(userDetailsEntity == null) {
+        if (userDetailsEntity == null) {
             throw new UserDetailsNotFoundException(employeeId);
         }
 
@@ -43,12 +43,12 @@ public class UserDetailsService implements IUserDetailsService {
     @Override
     public void updateUserDetails(UpdateUserDetailsServiceDto userDetailsDto) {
         var userDetailsEntity = userDetailsRepository.findByEmployeeId(userDetailsDto.getOldEmployeeId());
-        if(userDetailsEntity == null) {
+        if (userDetailsEntity == null) {
             throw new UserDetailsNotFoundException(userDetailsDto.getOldEmployeeId());
         }
         mapper.mapUpdateUserDetailsDtoToEntity(userDetailsDto, userDetailsEntity);
         var violations = validator.validate(userDetailsEntity);
-        if(!violations.isEmpty()) {
+        if (!violations.isEmpty()) {
             throw new ConstraintViolationException(violations);
         }
 

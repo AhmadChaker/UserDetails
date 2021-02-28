@@ -17,12 +17,11 @@ import javax.validation.constraints.Size;
 
 import java.sql.Timestamp;
 
-
 @Entity
 @Setter
 @Getter
 @ToString
-@Table(name="USER_DETAIL")
+@Table(name = "USER_DETAIL")
 public class UserDetailEntity {
 
     @Id
@@ -30,18 +29,18 @@ public class UserDetailEntity {
     private int id;
 
     @NotNull
-    @Size(max=10)
+    @Size(max = 10)
     private String employeeId;
     @NotNull
-    @Size(max=10)
+    @Size(max = 10)
     private String title;
     @NotNull
-    @Size(max=40)
+    @Size(max = 40)
     private String firstName;
     @NotNull
-    @Size(max=40)
+    @Size(max = 40)
     private String lastName;
-    @Size(max=10)
+    @Size(max = 10)
     private String gender;
     private Timestamp lastUpdatedDateTime;
 

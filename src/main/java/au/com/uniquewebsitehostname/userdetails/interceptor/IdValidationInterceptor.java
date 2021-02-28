@@ -13,12 +13,12 @@ public class IdValidationInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String url = request.getRequestURI();
-        if(url == null || url.isEmpty()) {
+        if (url == null || url.isEmpty()) {
             throw new IdValidationException();
         }
 
         String userId = getLastPartOfUrl(url);
-        if(userId.isEmpty()) {
+        if (userId.isEmpty()) {
             throw new IdValidationException();
         }
 

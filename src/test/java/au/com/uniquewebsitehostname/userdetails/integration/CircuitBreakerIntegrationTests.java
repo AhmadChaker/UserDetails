@@ -1,6 +1,5 @@
 package au.com.uniquewebsitehostname.userdetails.integration;
 
-import au.com.uniquewebsitehostname.userdetails.api.GetUserDetailsResponse;
 import au.com.uniquewebsitehostname.userdetails.exception.ErrorCode;
 import au.com.uniquewebsitehostname.userdetails.exception.ExceptionResponse;
 import com.netflix.config.ConfigurationManager;

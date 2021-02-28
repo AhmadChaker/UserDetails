@@ -1,6 +1,10 @@
 package au.com.uniquewebsitehostname.userdetails.controller;
 
-import au.com.uniquewebsitehostname.userdetails.exception.*;
+import au.com.uniquewebsitehostname.userdetails.exception.IdValidationException;
+import au.com.uniquewebsitehostname.userdetails.exception.ErrorCode;
+import au.com.uniquewebsitehostname.userdetails.exception.ExceptionResponse;
+import au.com.uniquewebsitehostname.userdetails.exception.UserAuthDetailsNotFoundException;
+import au.com.uniquewebsitehostname.userdetails.exception.UserDetailsNotFoundException;
 import com.netflix.hystrix.exception.HystrixRuntimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
