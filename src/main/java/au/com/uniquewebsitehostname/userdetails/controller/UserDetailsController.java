@@ -2,6 +2,7 @@ package au.com.uniquewebsitehostname.userdetails.controller;
 
 import au.com.uniquewebsitehostname.userdetails.api.GetUserDetailsResponse;
 import au.com.uniquewebsitehostname.userdetails.api.UpdateUserDetailsRequest;
+import au.com.uniquewebsitehostname.userdetails.configuration.DocumentationConfiguration;
 import au.com.uniquewebsitehostname.userdetails.dto.GetUserDetailsServiceDto;
 import au.com.uniquewebsitehostname.userdetails.mapper.UserDetailsDtoRequestResponseMapper;
 import au.com.uniquewebsitehostname.userdetails.service.IUserDetailsService;
@@ -25,14 +26,16 @@ public class UserDetailsController {
     @Autowired
     private UserDetailsDtoRequestResponseMapper mapper;
 
-    @Operation(summary = "Get user details", security = @SecurityRequirement(name = "basicAuth"))
+    @Operation(summary = "Get user details",
+            security = @SecurityRequirement(name = DocumentationConfiguration.BASIC_SECURITY_SCHEME_NAME))
     @GetMapping(UserDetailsPath + "{employeeId}")
     public ResponseEntity<GetUserDetailsResponse> getUserDetails(@PathVariable String employeeId) {
         GetUserDetailsServiceDto dto = userDetailService.getUserDetails(employeeId);
         return new ResponseEntity<GetUserDetailsResponse>(mapper.mapDtoToGetUserDetailsResponse(dto), HttpStatus.OK) ;
     }
 
-    @Operation(summary = "Update user details", security = @SecurityRequirement(name = "basicAuth"))
+    @Operation(summary = "Update user details",
+            security = @SecurityRequirement(name = DocumentationConfiguration.BASIC_SECURITY_SCHEME_NAME))
     @Secured("ROLE_ADMIN")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @PutMapping(UserDetailsPath + "{employeeId}")

@@ -17,6 +17,8 @@ import java.sql.Timestamp;
 @Service
 public class UserDetailsService implements IUserDetailsService {
 
+    private final String HYSTRIX_GROUPING = "businessHystrix";
+
     @Autowired
     private IUserDetailsRepository userDetailsRepository;
 
@@ -26,7 +28,7 @@ public class UserDetailsService implements IUserDetailsService {
     @Autowired
     private UserDetailsDtoEntityMapper mapper;
 
-    @HystrixCommand(ignoreExceptions = UserDetailsNotFoundException.class)
+    @HystrixCommand(ignoreExceptions = UserDetailsNotFoundException.class, commandKey = HYSTRIX_GROUPING)
     @Override
     public GetUserDetailsServiceDto getUserDetails(String employeeId) {
         var userDetailsEntity = userDetailsRepository.findByEmployeeId(employeeId);
@@ -37,7 +39,7 @@ public class UserDetailsService implements IUserDetailsService {
         return mapper.mapEntityToGetUserDetailsDto(userDetailsEntity);
     }
 
-    @HystrixCommand(ignoreExceptions = UserDetailsNotFoundException.class)
+    @HystrixCommand(ignoreExceptions = UserDetailsNotFoundException.class, commandKey = HYSTRIX_GROUPING)
     @Override
     public void updateUserDetails(UpdateUserDetailsServiceDto userDetailsDto) {
         var userDetailsEntity = userDetailsRepository.findByEmployeeId(userDetailsDto.getOldEmployeeId());
@@ -49,6 +51,7 @@ public class UserDetailsService implements IUserDetailsService {
         if(!violations.isEmpty()) {
             throw new ConstraintViolationException(violations);
         }
+
 
         userDetailsEntity.setLastUpdatedDateTime(new Timestamp(System.currentTimeMillis()));
         userDetailsRepository.save(userDetailsEntity);

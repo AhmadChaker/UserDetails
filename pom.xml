@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>au.com.uniquewebsitehostname</groupId>
 	<artifactId>user-details</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>user-details</name>
 	<description>Users Application For ING</description>
 	<properties>
@@ -50,10 +50,6 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -111,7 +107,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
-
 </project>

@@ -1,11 +1,9 @@
 package au.com.uniquewebsitehostname.userdetails.controller;
 
-import au.com.uniquewebsitehostname.userdetails.aspect.LoggingAspect;
 import au.com.uniquewebsitehostname.userdetails.exception.*;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.netflix.hystrix.exception.HystrixRuntimeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,7 +37,7 @@ public class ExceptionHandlerControllerTests {
     private ExceptionHandlerController controllerAdvice;
 
     @BeforeEach
-    void init() {
+    public void init() {
         // Setup logger and appender
         Logger logger = (Logger) LoggerFactory.getLogger(ExceptionHandlerController.class);
 

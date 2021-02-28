@@ -41,7 +41,6 @@ public class UserDetailEntity {
     @NotNull
     @Size(max=40)
     private String lastName;
-    @NotNull
     @Size(max=10)
     private String gender;
     private Timestamp lastUpdatedDateTime;

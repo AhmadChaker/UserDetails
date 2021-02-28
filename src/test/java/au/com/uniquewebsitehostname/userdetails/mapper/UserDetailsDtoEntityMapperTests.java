@@ -19,7 +19,7 @@ public class UserDetailsDtoEntityMapperTests {
 
     private UserDetailsDtoEntityMapper mapper;
     @BeforeEach
-    void init() {
+    public void init() {
         mapper = new UserDetailsDtoEntityMapper();
     }
 

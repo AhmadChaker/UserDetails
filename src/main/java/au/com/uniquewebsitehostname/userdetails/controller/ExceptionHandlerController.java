@@ -1,6 +1,5 @@
 package au.com.uniquewebsitehostname.userdetails.controller;
 
-import au.com.uniquewebsitehostname.userdetails.aspect.LoggingAspect;
 import au.com.uniquewebsitehostname.userdetails.exception.*;
 import com.netflix.hystrix.exception.HystrixRuntimeException;
 import org.slf4j.Logger;
@@ -10,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -76,6 +76,12 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         return formatResponse("Request arguments not valid", ex, ErrorCode.CONTROLLER_METHOD_ARG_INVALID,
                 HttpStatus.BAD_REQUEST);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(
+            HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        return formatResponse(ex, ErrorCode.METHOD_NOT_ALLOWED, HttpStatus.METHOD_NOT_ALLOWED);
     }
 
     @Override

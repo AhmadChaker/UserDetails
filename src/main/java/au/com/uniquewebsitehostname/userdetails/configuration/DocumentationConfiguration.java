@@ -9,9 +9,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @OpenAPIDefinition(info = @Info(title = "User Details API", version = "v1"))
 @SecurityScheme(
-        name = "basicAuth",
+        name = DocumentationConfiguration.BASIC_SECURITY_SCHEME_NAME,
         type = SecuritySchemeType.HTTP,
         scheme = "basic"
 )
 public class DocumentationConfiguration {
+    public static final String BASIC_SECURITY_SCHEME_NAME = "basicAuth";
 }

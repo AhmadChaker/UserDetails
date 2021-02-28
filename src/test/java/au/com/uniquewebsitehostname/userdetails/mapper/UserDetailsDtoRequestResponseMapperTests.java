@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UserDetailsDtoRequestResponseMapperTests {
     private UserDetailsDtoRequestResponseMapper mapper;
     @BeforeEach
-    void init() {
+    public void init() {
         mapper = new UserDetailsDtoRequestResponseMapper();
     }
 

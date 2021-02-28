@@ -2,7 +2,6 @@ package au.com.uniquewebsitehostname.userdetails.service;
 
 import au.com.uniquewebsitehostname.userdetails.dataaccess.dao.IUserAuthRepository;
 import au.com.uniquewebsitehostname.userdetails.dataaccess.entity.UserAuthEntity;
-import au.com.uniquewebsitehostname.userdetails.exception.IdValidationException;
 import au.com.uniquewebsitehostname.userdetails.exception.UserAuthDetailsNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

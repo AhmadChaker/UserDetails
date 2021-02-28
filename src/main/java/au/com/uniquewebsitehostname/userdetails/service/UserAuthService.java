@@ -3,7 +3,6 @@ package au.com.uniquewebsitehostname.userdetails.service;
 import au.com.uniquewebsitehostname.userdetails.dataaccess.dao.IUserAuthRepository;
 import au.com.uniquewebsitehostname.userdetails.dataaccess.entity.UserAuthEntity;
 import au.com.uniquewebsitehostname.userdetails.exception.UserAuthDetailsNotFoundException;
-import au.com.uniquewebsitehostname.userdetails.exception.UserDetailsNotFoundException;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,15 +18,15 @@ public class UserAuthService implements org.springframework.security.core.userde
     @Autowired
     private IUserAuthRepository userAuthRepository;
 
-    @HystrixCommand(ignoreExceptions = UserAuthDetailsNotFoundException.class)
+    @HystrixCommand(ignoreExceptions = UserAuthDetailsNotFoundException.class, commandKey = "authHystrix")
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserAuthEntity userAuthEntity = userAuthRepository.findByUsername(username);
-        if(userAuthEntity ==null ) {
+        if (userAuthEntity == null) {
             throw new UserAuthDetailsNotFoundException(username);
         }
 
-        SimpleGrantedAuthority authority  = new SimpleGrantedAuthority(userAuthEntity.getAuthorities());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userAuthEntity.getAuthorities());
         org.springframework.security.core.userdetails.User userDetail =
                 new org.springframework.security.core.userdetails.User(userAuthEntity.getUsername(),
                         userAuthEntity.getPassword(), List.of(authority));

@@ -1,13 +1,11 @@
 package au.com.uniquewebsitehostname.userdetails.service;
 
-import au.com.uniquewebsitehostname.userdetails.dataaccess.dao.IUserAuthRepository;
 import au.com.uniquewebsitehostname.userdetails.dataaccess.dao.IUserDetailsRepository;
 import au.com.uniquewebsitehostname.userdetails.dataaccess.entity.AddressEntity;
 import au.com.uniquewebsitehostname.userdetails.dataaccess.entity.UserDetailEntity;
 import au.com.uniquewebsitehostname.userdetails.dto.AddressDetailsDto;
 import au.com.uniquewebsitehostname.userdetails.dto.GetUserDetailsServiceDto;
 import au.com.uniquewebsitehostname.userdetails.dto.UpdateUserDetailsServiceDto;
-import au.com.uniquewebsitehostname.userdetails.exception.UserAuthDetailsNotFoundException;
 import au.com.uniquewebsitehostname.userdetails.exception.UserDetailsNotFoundException;
 import au.com.uniquewebsitehostname.userdetails.mapper.UserDetailsDtoEntityMapper;
 import org.junit.jupiter.api.Test;
@@ -25,10 +23,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import javax.validation.*;
-import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 @ExtendWith(MockitoExtension.class)
 public class UserDetailsServiceTests {
