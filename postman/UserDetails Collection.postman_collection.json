@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "836d8038-9782-409c-8d52-3b7b5406e51b",
+		"name": "UserDetails Collection",
+		"description": "This collection contains a set of functions for querying a users details and also updating a users details.\r\nFor documentation related to this API collection please consult: http://localhost:8080/swagger-ui.html",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get User Details (unpriveleged)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWNoYWtlcjpNYXJzMjAyMQ==",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/userdetails/0012345698",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"userdetails",
+						"0012345698"
+					]
+				},
+				"description": "Get User Details (unpriveleged)"
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Details (unpriveleged)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWNoYWtlcjpNYXJzMjAyMQ==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"abc\": \"123\",\r\n    \"title\": \"MR\",\r\n    \"firstName\": \"AHMAD\",\r\n    \"lastName\": \"CHAKER8\",\r\n    \"gender\": \"BMALE123\",\r\n    \"employeeId\": \"0012345698\",\r\n    \"address\": {\r\n        \"street\": \"123 Fake Street\",\r\n        \"city\": \"Sydney\",\r\n        \"postcode\": \"20010\",\r\n        \"state\": \"NSW1\",\r\n        \"country\": \"AUSTRALIA18\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/userdetails/0012345698",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"userdetails",
+						"0012345698"
+					]
+				},
+				"description": "Update User Details (unpriveleged)"
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Details (priveleged)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWNoYWtlckFkbWluOkp1cGl0ZXIyMDIy",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"abc\": \"123\",\r\n    \"title\": \"MR\",\r\n    \"firstName\": \"AHMAD\",\r\n    \"lastName\": \"CHAKER8\",\r\n    \"gender\": \"BMALE123\",\r\n    \"employeeId\": \"0012345698\",\r\n    \"address\": {\r\n        \"street\": \"123 Fake Street\",\r\n        \"city\": \"Sydney\",\r\n        \"postcode\": \"20010\",\r\n        \"state\": \"NSW1\",\r\n        \"country\": \"AUSTRALIA18\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/userdetails/0012345698",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"userdetails",
+						"0012345698"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
